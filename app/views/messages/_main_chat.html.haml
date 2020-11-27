@@ -1,0 +1,30 @@
+.Main-Chat
+  .Main-Chat__group--info
+    .main-group
+      .main-group__name
+        aaaa
+      .main-group__member
+        aaa
+    =link_to '#' , class: "edit-btn" do
+      Edit
+  .Main-Chat__message--list
+    .message
+      .message__info
+        .message__info--user
+          aaa
+        .message__info--time
+          1212
+      .message__content
+        aaa
+  .Main-Chat__message--form
+    .form
+      .form-contents
+        .form-contents__text
+          %input.text{name: "message[content]", placeholder:  "type a message", :type => "text", }
+          .form-contents__text--img
+            %label{class: "input-box__image"}
+              = icon('fas', 'image')
+              %input.hidden{type: "file"}
+        %input.send{name: "commit", value: "SEND", type: "submit", }
+           
+    
