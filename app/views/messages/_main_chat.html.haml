@@ -20,11 +20,11 @@
     .form
       .form-contents
         .form-contents__text
-          %input.text{:name => "message[content]", :placeholder => "type a message", :type => "text", }
+          %input.text{name: "message[content]", placeholder:  "type a message", :type => "text", }
           .form-contents__text--img
             %label{class: "input-box__image"}
               = icon('fas', 'image')
               %input.hidden{type: "file"}
-        %input.send{:name => "commit", :value => "SEND", :type => "submit", }
+        %input.send{name: "commit", value: "SEND", type: "submit", }
            
     
