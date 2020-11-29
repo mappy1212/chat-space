@@ -27,6 +27,7 @@ belongs_to :group
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
+
 ### Association
 
 has_many :messages
