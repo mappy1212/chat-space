@@ -5,21 +5,17 @@
       .main-group__member
     =link_to '#' , class: "edit-btn" do
       Edit
-  .Main-Chat__message--list
-    .message
-      .message__info
-        .message__info--user
-        .message__info--time
-      .message__content
+  .MessageField
+    = render @messages
   .Main-Chat__message--form
     .form
-      .form-contents
-        .form-contents__text
-          %input.text{name: "message[content]", placeholder:  "type a message", :type => "text", }
-          .form-contents__text--img
-            %label{class: "input-box__image"}
-              = icon('fas', 'image')
-              %input.hidden{type: "file"}
-        %input.send{name: "commit", value: "SEND", type: "submit", }
-           
+      = form_with model: [@group, @message], html: {class: "Form"}, local: true do |f|
+        .form-contents
+          .form-contents__text
+            = f.text_field :content, class: 'Form__inputContent', placeholder: 'type a message'
+            = f.label :image, class: 'Form__inputImage' do
+              = icon('far', 'image', class: 'Form__icon')
+            = f.file_field :image, class: 'Hidden'
+          = f.submit 'Send', class: 'Form__submit'
+          
     
