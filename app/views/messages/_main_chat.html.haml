@@ -2,20 +2,22 @@
   .Main-Chat__group--info
     .main-group
       .main-group__name
+        = @group.name
       .main-group__member
-    =link_to '#' , class: "edit-btn" do
+        - @group.users.each do |user|
+          = user.name
+    = link_to edit_group_path(@group), class: "edit-btn" do
       Edit
-  .MessageField
+  .Main-Chat__message--list
     = render @messages
   .Main-Chat__message--form
-    .form
-      = form_with model: [@group, @message], html: {class: "Form"}, local: true do |f|
-        .form-contents
-          .form-contents__text
-            = f.text_field :content, class: 'Form__inputContent', placeholder: 'type a message'
-            = f.label :image, class: 'Form__inputImage' do
-              = icon('far', 'image', class: 'Form__icon')
-            = f.file_field :image, class: 'Hidden'
-          = f.submit 'Send', class: 'Form__submit'
+    = form_with model: [@group, @message], html: {class: "form"}, local: true do |f|
+      .form-contents
+        .form-contents__text
+          = f.text_field :content, class: 'text', placeholder: 'type a message'
+          = f.label :image, class: 'form-contents__text--img' do
+            = icon('far', 'image', class: 'input-box__image')
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'send'
           
     

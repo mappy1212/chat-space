@@ -120,6 +120,9 @@
         font-size: 14px;
         color: #434a54;
         margin-bottom:46px ;
+        .Message__image{
+          height: 300px;
+        }
       }
     }
   }
@@ -149,9 +152,9 @@
             .input-box__image{
               font-size: 25px;
               line-height: 50px;
-              .hidden{
-                display: none;
-              }
+            }
+            .hidden{
+              display: none;
             }
           }
         }
