@@ -2,24 +2,22 @@
   .Main-Chat__group--info
     .main-group
       .main-group__name
+        = @group.name
       .main-group__member
-    =link_to '#' , class: "edit-btn" do
+        - @group.users.each do |user|
+          = user.name
+    = link_to edit_group_path(@group), class: "edit-btn" do
       Edit
   .Main-Chat__message--list
-    .message
-      .message__info
-        .message__info--user
-        .message__info--time
-      .message__content
+    = render @messages
   .Main-Chat__message--form
-    .form
+    = form_with model: [@group, @message], html: {class: "form"}, local: true do |f|
       .form-contents
         .form-contents__text
-          %input.text{name: "message[content]", placeholder:  "type a message", :type => "text", }
-          .form-contents__text--img
-            %label{class: "input-box__image"}
-              = icon('fas', 'image')
-              %input.hidden{type: "file"}
-        %input.send{name: "commit", value: "SEND", type: "submit", }
-           
+          = f.text_field :content, class: 'text', placeholder: 'type a message'
+          = f.label :image, class: 'form-contents__text--img' do
+            = icon('far', 'image', class: 'input-box__image')
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'send'
+          
     
