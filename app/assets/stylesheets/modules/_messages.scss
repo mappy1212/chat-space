@@ -98,6 +98,7 @@
     }
   }
   &__message--list{
+    overflow: scroll;
     height: calc(100vh - 190px);
     background-color: #fafafa;
     padding: 35px 0 0 40px;
@@ -137,7 +138,7 @@
         &__text{
           width: 100%;
           display: flex;
-          justify-content: space-between;
+          //justify-content: space-between;
           position: relative;
           .text{
             height: 50px;
