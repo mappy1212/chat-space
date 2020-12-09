@@ -1,9 +1,8 @@
-
 $(function(){
   function buildHTML(message){
-    if (message.image){
+    if ( message.image ) {
       let html =
-        `<div class="MessageBox">
+        `<div class="MessageBox" data-message-id=${message.id}>
           <div class="message">
             <div class="message__info">
               <div class="message__info--user">
@@ -23,8 +22,8 @@ $(function(){
         </div>`
       return html;
     } else {
-       let html =
-       `<div class="MessageBox">
+      let html =
+      `<div class="MessageBox" data-message-id=${message.id}>
           <div class="message">
             <div class="message__info">
               <div class="message__info--user">
@@ -34,28 +33,23 @@ $(function(){
                 ${message.created_at}
               </div>
             </div>
-            <div class="message__content">
-              <p class="Message__content">
+              <div class="message__content">
                 ${message.content}
-              </p>
-            </div>
+              </div>
           </div>
         </div>`
       return html;
     };
-
-
-
-
-
   }
+
   $('.form').on('submit', function(e){
     e.preventDefault();
     let formData = new FormData(this);
-    let url = $(this).attr('action')
+    let url = $(this).attr('action');
+    
     $.ajax({
       url: url,
-      type: 'POST',
+      type: "POST",
       data: formData,
       dataType: 'json',
       processData: false,
@@ -63,13 +57,14 @@ $(function(){
     })
     .done(function(data){
       let html = buildHTML(data);
-      $(".Main-Chat__message--list").append(html);
+      $('.Main-Chat__message--list').append(html);      
+      $('form')[0].reset();
       $('.Main-Chat__message--list').animate({ scrollTop: $('.Main-Chat__message--list')[0].scrollHeight});
-      $('.send').prop('disabled', false);
-      $("form")[0].reset();
+      $('.send').prop("disabled", false);
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
+      $('.send').prop("disabled", false);
     });
   });
 });
